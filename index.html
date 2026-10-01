@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Head Scratch Society · Puzzles worth arguing about</title>
 <meta name="description" content="A fresh puzzle every day, five quick brain games and a wall of fair but sneaky scratchers. Guess, play, then compare notes.">
 <meta name="color-scheme" content="light dark">
@@ -78,6 +78,8 @@ h1,h2,h3,p,ul,ol,dl,dd,figure,blockquote,fieldset{margin:0;padding:0}
 fieldset{border:0;min-width:0}
 ul,ol{list-style:none}
 button,input{font:inherit;color:inherit}
+html{-webkit-tap-highlight-color:transparent}
+a,button,label,summary,input{touch-action:manipulation}   /* fast taps in the games must never trigger double-tap zoom */
 button{cursor:pointer}
 a{color:var(--link);text-underline-offset:.18em;text-decoration-thickness:.09em}
 svg{display:block}
@@ -115,9 +117,14 @@ svg{display:block}
 .icon-btn .when-on{display:none}
 .icon-btn[aria-pressed="true"] .when-on{display:block}
 .icon-btn[aria-pressed="true"] .when-off{display:none}
+/* phones: the section links become a bar at the bottom of the screen, within thumb reach on a long page */
 @media (max-width:719px){
-  .nav{order:3;width:calc(100% + 1rem);margin-inline:-.5rem;gap:.1rem .3rem}
-  .nav a{padding-inline:.5rem}
+  .nav{position:fixed;left:0;right:0;bottom:0;z-index:25;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;background:var(--hero-bg);color:var(--hero-fg);border-top:3px solid var(--line);padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .nav a{justify-content:center;min-height:56px;padding:0 .2rem;border-radius:0;font-weight:800;white-space:nowrap}
+  .nav a[aria-current="true"]{box-shadow:inset 0 5px 0 currentColor}
+  body{padding-bottom:calc(59px + env(safe-area-inset-bottom))}
+  html{scroll-padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .toast{bottom:calc(76px + env(safe-area-inset-bottom))}
   .brand-name{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 }
 
@@ -256,6 +263,7 @@ svg{display:block}
 .best b{font-family:var(--display);font-weight:900;font-size:1.3rem;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 40}
 .how{margin-top:.6rem;max-width:42rem;font-size:1.1rem}
 .keys{margin-top:.35rem;color:var(--muted);font-size:.95rem;font-weight:600}
+@media (hover:none) and (pointer:coarse){.keys,.opt-btn kbd{display:none}}   /* touch screens: no keyboard hints */
 .note{margin-top:.8rem;padding:.75rem 1rem;border:3px solid var(--line);border-radius:14px;background:var(--soft);max-width:42rem;font-weight:600}
 .stage{position:relative;margin-top:1.2rem;border:3px solid var(--line);border-radius:18px;background:var(--soft);min-height:210px;padding:1rem;display:grid;place-items:center;gap:.6rem;text-align:center}
 .stage:focus,.verdict:focus{outline:none}
@@ -1490,9 +1498,23 @@ forget.addEventListener("click", () => {
   toast("Done. Nothing is saved in this browser now.");
 });
 
+/* ================= WHERE AM I (marks the current section in the bar) ================= */
+const navLinks = [...document.querySelectorAll(".nav a")].map(a => [a, document.querySelector(a.getAttribute("href"))]).filter(([, sec]) => sec);
+let navTick = 0;
+function paintNav() {
+  navTick = 0;
+  const mid = innerHeight * 0.45;
+  let current = null;
+  for (const [a, sec] of navLinks) if (sec.getBoundingClientRect().top <= mid) current = a;
+  for (const [a] of navLinks) { if (a === current) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); }
+}
+addEventListener("scroll", () => { if (!navTick) navTick = requestAnimationFrame(paintNav); }, { passive: true });
+addEventListener("resize", paintNav);
+
 /* ================= GO ================= */
 paintTheme(); paintSound();
 renderDaily(); renderFilters(); renderWall(); renderGames(); renderFollow();
+paintNav();
 document.documentElement.dataset.ready = "1";
 })();
 </script>
