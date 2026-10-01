@@ -1,0 +1,34 @@
+# Publishes only the site itself (index.html, 404.html, assets/) to GitHub Pages.
+# Tests, tools and the README stay in the repository and are not part of the live site.
+name: Publish site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect the site files
+        run: |
+          mkdir _site
+          cp index.html 404.html _site/
+          cp -R assets _site/assets
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
