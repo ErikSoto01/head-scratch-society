@@ -1,0 +1,17 @@
+{
+  "name": "head-scratch-society",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public site for the Head Scratch Society Page. Static, dependency-free. This package.json is for development checks only.",
+  "type": "module",
+  "scripts": {
+    "verify": "node tools/verify-puzzles.mjs",
+    "test": "node tools/verify-puzzles.mjs && node --test --test-concurrency=1 tests/*.test.mjs",
+    "screens": "node tools/screens.mjs",
+    "assets": "node tools/render-assets.mjs",
+    "set-url": "node tools/set-url.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.12.0"
+  }
+}

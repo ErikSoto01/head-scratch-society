@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Head Scratch Society</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<script>
+/* A missing page can sit at any depth, so relative links need a base.
+   On GitHub Pages project sites (name.github.io/repo/) the base is the repo folder; anywhere else it is the site root. */
+(function(){
+  var parts = location.pathname.split("/");
+  var root = /\.github\.io$/.test(location.hostname) && parts.length > 2 ? "/" + parts[1] + "/" : "/";
+  document.write('<base href="' + root + '">');
+  try { var t = localStorage.getItem("hss:theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+})();
+</script>
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Fraunces";src:url("assets/fonts/fraunces-latin-full-normal.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url("assets/fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2");font-weight:200 800;font-display:swap}
+:root{--bg:#ffc531;--fg:#17132b;--btn-bg:#17132b;--btn-fg:#fff7e8;--focus:#17132b;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17132b;--fg:#fff7e8;--btn-bg:#ffc531;--btn-fg:#17132b;--focus:#ffc531;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17132b;--fg:#fff7e8;--btn-bg:#ffc531;--btn-fg:#17132b;--focus:#ffc531;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;display:grid;place-items:center;background:var(--bg);color:var(--fg);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.125rem;line-height:1.5;font-weight:500}
+main{width:min(100% - 2rem,34rem);padding-block:2.5rem;text-align:center}
+svg{width:clamp(7rem,34vw,11rem);height:auto;margin-inline:auto;display:block;filter:drop-shadow(5px 5px 0 #17132b)}
+.label{margin:1.8rem 0 0;font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:.8125rem}
+h1{margin:.6rem 0 0;font-family:"Fraunces",Georgia,serif;font-weight:900;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;font-size:clamp(2.6rem,12vw,4.4rem);line-height:.98;letter-spacing:-.02em}
+p{margin:1.1rem 0 0}
+a{display:inline-flex;align-items:center;justify-content:center;min-height:56px;margin-top:1.8rem;padding:.6rem 1.5rem;border-radius:14px;background:var(--btn-bg);color:var(--btn-fg);font-weight:800;font-size:1.15rem;text-decoration:none;box-shadow:4px 4px 0 rgba(0,0,0,.28);transition:transform .12s ease}
+a:hover{transform:translate(-1px,-1px)}
+a:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+@media (prefers-reduced-motion:reduce){a{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+    <circle cx="256" cy="256" r="252" fill="#17132b"/>
+    <circle cx="256" cy="256" r="236" fill="#fff7e8"/>
+    <circle cx="256" cy="256" r="212" fill="#ffc531"/>
+    <g transform="translate(256 258) scale(.72) translate(-294 -253)">
+      <g fill="none" stroke="#17132b" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M168 204c0-58 40-100 96-100 54 0 92 36 92 86 0 42-28 62-58 82-22 15-34 28-34 56" stroke-width="64"/>
+        <path d="M388 92l30-26M410 140l40-12M412 190l40 6" stroke-width="18"/>
+      </g>
+      <circle cx="264" cy="408" r="38" fill="#17132b"/>
+    </g>
+  </svg>
+  <p class="label">Head Scratch Society · Error 404</p>
+  <h1>Now that is a head scratcher.</h1>
+  <p>This page has gone missing, and for once there is no clue in plain sight.</p>
+  <a href="./">Back to the clubhouse</a>
+</main>
+</body>
+</html>

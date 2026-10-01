@@ -1,0 +1,44 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Source art for assets/og.png and the favicons. Rendered by tools/render-assets.mjs.</title>
+<style>
+  @font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-latin-full-normal.woff2") format("woff2");font-weight:100 900;font-display:block}
+  @font-face{font-family:"Bricolage Grotesque";src:url("../assets/fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2");font-weight:200 800;font-display:block}
+  :root{--ink:#17132b;--paper:#fff7e8;--marigold:#ffc531;--tomato:#ff5a45;--mint:#19c29a;--grape:#6c4cf1;--sky:#3fa9f5}
+  html,body{margin:0;background:#888}
+  .display{font-family:"Fraunces",serif;font-weight:900;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;letter-spacing:-.02em;line-height:.95}
+  #og{width:1200px;height:630px;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:52px}
+  #og .mark{width:270px;height:270px;flex:none}
+  #og h1{margin:0;font-size:118px;white-space:nowrap}
+  #og h1 em{font-style:normal;color:var(--marigold)}
+  #og .soc{display:flex;align-items:center;gap:20px;margin:16px 0 0 5px;font:800 31px "Bricolage Grotesque",sans-serif;letter-spacing:.18em;text-transform:uppercase}
+  #og .soc i{flex:1;height:5px;border-radius:3px;background:var(--tomato)}
+  #og p{margin:24px 0 0 5px;font:650 38px "Bricolage Grotesque",sans-serif;color:var(--paper)}
+  .dood{position:absolute;font-family:"Fraunces",serif;font-weight:900;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;line-height:1}
+  .icon{background:var(--marigold);display:block}
+</style>
+<div id="og">
+  <span class="dood" style="left:54px;top:26px;font-size:124px;color:var(--grape);transform:rotate(-14deg)">?</span>
+  <span class="dood" style="right:76px;top:28px;font-size:88px;color:var(--mint);transform:rotate(11deg)">7×8</span>
+  <span class="dood" style="left:150px;bottom:22px;font-size:80px;color:var(--tomato);transform:rotate(7deg)">A=B?</span>
+  <span class="dood" style="right:64px;bottom:20px;font-size:124px;color:var(--sky);transform:rotate(-10deg)">!</span>
+  <span class="dood" style="left:560px;top:22px;font-size:66px;color:var(--marigold);transform:rotate(-5deg)">1+1=3</span>
+  <svg class="mark" viewBox="0 0 512 512">
+    <circle cx="256" cy="256" r="252" fill="#fff7e8"/>
+    <circle cx="256" cy="256" r="232" fill="#ffc531"/>
+    <g transform="translate(256 258) scale(.78) translate(-294 -253)">
+      <g fill="none" stroke="#17132b" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M168 204c0-58 40-100 96-100 54 0 92 36 92 86 0 42-28 62-58 82-22 15-34 28-34 56" stroke-width="64"/>
+        <path d="M388 92l30-26M410 140l40-12M412 190l40 6" stroke-width="18"/>
+      </g>
+      <circle cx="264" cy="408" r="38" fill="#17132b"/>
+    </g>
+  </svg>
+  <div>
+    <h1 class="display">Head <em>Scratch</em></h1>
+    <div class="soc"><span>Society</span><i></i></div>
+    <p>Puzzles worth arguing about.</p>
+  </div>
+</div>
+<img class="icon" id="icon180" src="../assets/mark.svg" width="180" height="180" alt="">
+<img class="icon" id="icon32" src="../assets/mark.svg" width="32" height="32" alt="">
