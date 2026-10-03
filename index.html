@@ -371,6 +371,10 @@ svg{display:block}
 .foot-brand{display:flex;align-items:center;gap:.8rem}
 .foot-brand svg{width:56px;height:56px;flex:none}
 .foot-brand b{font-family:var(--display);font-weight:900;font-size:1.4rem;line-height:1.1;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 40;display:block}
+.foot-links{display:flex;flex-wrap:wrap;gap:0 1.4rem;margin-top:.4rem;padding-left:calc(56px + .8rem);font-weight:700}
+.foot-links:empty{display:none}
+.foot-links a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration-thickness:2px;text-underline-offset:4px}
+.foot-links a:hover{color:var(--marigold)}
 .privacy{max-width:44rem}
 .privacy h2{font-family:var(--text);font-weight:800;font-size:.8125rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.4rem}
 .foot small{color:var(--muted);font-size:.95rem}
@@ -533,9 +537,12 @@ svg{display:block}
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <div class="foot-brand">
-      <svg aria-hidden="true" focusable="false"><use href="#hss-mark"/></svg>
-      <p><b>Head Scratch Society</b>Puzzles worth arguing about.</p>
+    <div>
+      <div class="foot-brand">
+        <svg aria-hidden="true" focusable="false"><use href="#hss-mark"/></svg>
+        <p><b>Head Scratch Society</b>Puzzles worth arguing about.</p>
+      </div>
+      <p class="foot-links" id="foot-links"></p>
     </div>
     <div class="privacy">
       <h2>Privacy, in plain words</h2>
@@ -611,8 +618,8 @@ svg{display:block}
 /* ================= CONFIG ================= */
 /* Follow links. Leave a value empty and that link stays hidden everywhere. */
 const SITE = {
-  facebook: "https://www.facebook.com/profile.php?id=61594756210795",   // e.g. "https://www.facebook.com/headscratchsociety"
-  instagram: "",  // e.g. "https://www.instagram.com/headscratchsociety"
+  facebook: "https://www.facebook.com/profile.php?id=61594756210795",
+  instagram: "https://www.instagram.com/headscratchsociety/",
   url: "https://eriksoto01.github.io/head-scratch-society/"         // public address of this site, used in shared text. Empty = use the address in the browser.
 };
 const EPOCH = [2026, 10, 1];          // the date puzzle No. 01 runs
@@ -1480,6 +1487,7 @@ function renderFollow() {
   const links = [["facebook", "Join us on Facebook"], ["instagram", "Find us on Instagram"]].filter(([k]) => okUrl(SITE[k]));
   $("#follow").hidden = links.length === 0;
   $("#follow-links").replaceChildren(...links.map(([k, label], n) => el("a", { class: "btn" + (n ? " btn--ghost" : ""), href: SITE[k].trim(), rel: "noopener", "data-follow": k, text: label })));
+  $("#foot-links").replaceChildren(...links.map(([k]) => el("a", { href: SITE[k].trim(), rel: "noopener", text: k === "facebook" ? "Facebook" : "Instagram" })));
   if (okUrl(SITE.facebook)) $("#fb-inline").replaceChildren(el("a", { href: SITE.facebook.trim(), rel: "noopener", text: "our Facebook Page" }));
 }
 

@@ -600,10 +600,11 @@ test("the wall lists the whole pool, filters by type and reveals answers on dema
 
 test("follow links stay hidden while the config is empty, and appear when it is filled in", async () => {
   let s = await open();
-  const live = ["facebook", "instagram"].filter(k => SITE[k]);            // empty today: the Page does not exist yet
+  const live = ["facebook", "instagram"].filter(k => SITE[k]);
   assert.equal(await s.page.$eval("#follow", e => e.hidden), live.length === 0);
   assert.deepEqual(await s.page.$$eval("a[data-follow]", e => e.map(a => a.dataset.follow)), live);
-  assert.equal(await s.page.$$eval('a[href^="http"]', e => e.length), live.length + (SITE.facebook ? 1 : 0), "no outbound links except the configured ones");
+  assert.equal(await s.page.$$eval('a[href^="http"]', e => e.length), 2 * live.length + (SITE.facebook ? 1 : 0), "no outbound links except the configured ones (follow buttons, footer links, the inline Page link)");
+  assert.deepEqual(await s.page.$$eval("#foot-links a", e => e.map(a => a.href)), live.map(k => SITE[k]));
   assert.equal(!!(await s.page.$("#fb-inline a")), !!SITE.facebook);
   await s.done();
   s = await open({ prepare: async page => {

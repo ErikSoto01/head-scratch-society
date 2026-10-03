@@ -5,7 +5,7 @@ Tagline: *Puzzles worth arguing about.*
 
 It is a static site with no dependencies, no build step and no external requests: one `index.html` (CSS and JS inline), a `404.html`, and an `assets/` folder. Every URL is relative, so it works from a sub-path such as `https://name.github.io/head-scratch-society/`.
 
-**Status: built and committed locally. Not published.** No GitHub repo, remote or deployment exists yet.
+**Status: live** at https://eriksoto01.github.io/head-scratch-society/ (GitHub ErikSoto01/head-scratch-society). Pushing to `main` publishes through the Pages workflow. Follow links point to the Facebook Page and Instagram `@headscratchsociety`. The puzzle pool cycles: after the last puzzle it starts again from No. 01 (the owner is fine with that while the audience is new).
 
 ## What is on the page
 
@@ -39,16 +39,16 @@ Near the top of the script:
 
 ```js
 const SITE = {
-  facebook: "",   // e.g. "https://www.facebook.com/headscratchsociety"
-  instagram: "",  // e.g. "https://www.instagram.com/headscratchsociety"
-  url: ""         // public address of this site, used in shared text
+  facebook: "https://www.facebook.com/profile.php?id=61594756210795",
+  instagram: "https://www.instagram.com/headscratchsociety/",
+  url: "https://eriksoto01.github.io/head-scratch-society/"   // public address, used in shared text
 };
 ```
 
-- **While a value is empty, that link is hidden completely.** With both empty, the whole "The meeting is open" block is hidden, and "our Facebook Page" in the house rules is plain text. Fill in `facebook` and both appear. Links must start with `https://`.
+- **While a value is empty, that link is hidden completely.** With both empty, the whole "The meeting is open" block is hidden, and "our Facebook Page" in the house rules is plain text. Both are filled in now; the follow block shows a Facebook and an Instagram button, and the footer lists both links. Links must start with `https://`.
 - `url` is the address added to shared brags. Empty means "whatever address the visitor is on".
 
-### Before launch: tell the site its address
+### The site's address (done)
 
 Link previews (Facebook, Messenger, WhatsApp and friends) need **absolute** URLs for the preview image. Once the address is known, run:
 
