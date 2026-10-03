@@ -1,4 +1,4 @@
-# Publishes only the site itself (index.html, 404.html, assets/) to GitHub Pages.
+# Publishes only the site itself (index.html, 404.html, robots.txt, sitemap.xml, assets/) to GitHub Pages.
 # Tests, tools and the README stay in the repository and are not part of the live site.
 name: Publish site
 on:
@@ -23,7 +23,7 @@ jobs:
       - name: Collect the site files
         run: |
           mkdir _site
-          cp index.html 404.html _site/
+          cp index.html 404.html robots.txt sitemap.xml _site/
           cp -R assets _site/assets
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5

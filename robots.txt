@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eriksoto01.github.io/head-scratch-society/sitemap.xml
